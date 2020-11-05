@@ -8,6 +8,7 @@ snowflake (SaaS) -- no hardware to select, no software to install. run in a publ
 Snowflake cannot be run on private cloud infrastructures (on-premises or hosted)
 All components of snowflake’s service run in a public cloud infrastructure
 ongoing management,maintenance is handled by SF itself
+
 -- analytic db developped for the cloud ; it is not built on an existing database/ big data or hadoop thing
 -- faster, easier to use and flexible than traditional warehouse
 -- handles availability, optimization, authentication, configuration, resource management and data protection.
@@ -30,6 +31,7 @@ Multi cluster warehouses enable you to scale compute resources to manage your us
 Scaling policy can be set when the warehouse is created or at any time afterwards ((through web or using SQL)
 You can increase or decrease the number of clusters at any time even while the warehouse is running and executing statements (through web or using SQL)
 You can monitor multi cluster warehouses through history or worksheet
+
 Multi cluster datawarehouse enables numbers of users to connect to the same size warehouse
 Multi warehouses are best utilized for scaling resources to improve concurrency for users/queries. They are not beneficial for improve performance of slow running queries or data loading.
 Sf charges you for the number of clusters in Multi cluster WH
@@ -164,18 +166,24 @@ history page allows you to view and drill into details in last 14 days.
 auto refresh refreshes every 10sec
 VM is independent and it doesn't share resources with others
 data is not directly accessible to customers; data is accessible via SQL
+
 Note: Account activation must occur within 72 hours or you will
 need to create another trial account.
+
 Caution: If you log out of Snowflake, all running queries in the
 worksheet will cease.
+
 The history goes back 14 days -- history page two weeks 
 Reminder: Logging out of Snowflake will cancel all running queries that are in a worksheet
+
 Note: Larger virtual warehouses may not result in better
 performance for data loading or query processing.
 
 Note: If queries are queuing more than desired, another virtual
 warehouse can be created, and queries can be manually redirected to
-the new virtual warehouse. In addition, resizing a virtual warehouse
+the new virtual warehouse. 
+
+In addition, resizing a virtual warehouse
 can enable limited scaling for query concurrency and queuing;
 however, virtual warehouse resizing is primarily for improving query
 performance.
@@ -192,6 +200,7 @@ Why did we recommend making the description field 62 characters wide instead of 
 --> Because Snowflake does not provide an "Other" option for field enclosures.
 You can't change the name of a Datawarehouse after it is created
 Warehouses are owned by roles not individual users
+
 To change the warehouse that will be used to run a SQL command within a specific worksheet (for example, changing the worksheet so that it uses SMALL_WH), what two options are available?  
 
 -->Run a SQL command like "USE WAREHOUSE SMALL_WH;"
@@ -213,27 +222,34 @@ Scaling up is a manual process. (e.g. Small to Medium)   TRUE
 Scaling down is an automated process. False
 Snapping back is a manual process (e.g. Max clusters to min clusters) false
 Scaling out is an automated process (e.g. Min clusters to max clusters) true
+
 When configuring a Warehouse using a Snowflake edition that has Elastic Data Warehousing enabled, what facets or components will you need to configure that are not needed in accounts where Elastic Data Warehousing is not enabled. (Choose two). 
 --> minimum and maximum clusters, scaling policy
+
 Snowflake Stages can be defined as either External or Internal.
 Note: The date slider has a minimum/maximum range of 8 hours to
+
 14 days. Load monitoring data is not available previous to 14 days.
-There are four types of query statuses: Running, Queued, Queued
-Provisioning, and Queued Repairing.
-• Running: Queries that were actively running during
-the interval. These queries may have started before ordering the interval.
-• Queued: Queries that are in wait status. The wait could be because of the warehouse load being maxed out and therefore, would need to wait for running queries to complete processing.
-• Queued Provisioning: Queries that are in wait status because the warehouse is provisioning, usually after a warehouse resumes.
-• Queued Repairing: Queries that are in wait status while the warehouse is repaired. While rare, this occursonly for a few minutes.
-multicluster virtual warehouse :
+There are four types of query statuses: Running, Queued, Queued Provisioning, and Queued Repairing.
+
+--  Running: Queries that were actively running duringthe interval. These queries may have started before ordering the interval.
+-- Queued: Queries that are in wait status. The wait could be because of the warehouse load being maxed out and therefore, would need to wait for running queries to complete processing.
+-- Queued Provisioning: Queries that are in wait status because the warehouse is provisioning, usually after a warehouse resumes.
+--  Queued Repairing: Queries that are in wait status while the warehouse is repaired. While rare, this occursonly for a few minutes.
+
+-- multicluster virtual warehouse :
 supported files are csv, json/xml, parquet, Avro, ORC
+
 Note: Splitting larger data files allows the load to scale linearly. Using a larger warehouse (X-Large, 2X-Large, etc.) will consume more credits and may not result in any performance increase.
+
 Note: VARIANT “null” values (not to be confused with SQL NULL values) are not loaded to the table. To avoid this, extract
 semi structured data elements containing “null” values into relational columns before loading them, Alternatively, if the “null” values in
 your files indicate missing values and have no other special meaning, Snowflake recommends setting the file format option STRIP_NULL_
 VALUES to TRUE when loading the semi structured data files.
+
 Note: S3 transmits a directory list with each COPY statement used by Snowflake, so reducing the number of files in each directory
 improves the performance of your COPY statements.
+
 -Listing specific files to load from a stage is generally the fastest.
 i.e:copy into sample_table from @%sample_data/data1/ files=
 ('sample_file1.csv', 'sample_file2.csv', 'sample_file3.csv')
@@ -248,15 +264,21 @@ If a file is large, then it should be loaded using SnowSQL or
 Snowpipe (if < 50MB then using the web user is fine)
 
 Snowpipe is an autoscaling Snowflake cloud service that provides continuously loaded data into the Snowflake data warehouse from internal and external stages
+
 Caution: The option auto_ingest is not available unless it is explicitly enabled on your Snowflake account. Please contact
 Snowflake Supports for the enable options in your Snowflake account.
+
 Credits are billed per second, with a 60-second minimum.
+
 Note: Make sure that data is in a compressed format in the Snowflake staging area. Another consideration is to use external
 storage options like Amazon S3 where you can set the data lifecycle policy and archive cold data.
 Snowflake charges a fee for unloading data into S3 or Blog Storage within the same region or across regions
+
 Note :Snowflake won’t charge you for loading data from external storage
+
 Note: A table with clustering keys defined is considered to be clustered. Clustering keys aren’t important for all tables. Whether 
 to use clustering depends on the size of a table and the query performance, and it is most suitable for multiterabyte tables.
+
 Note: Materialized views are designed to improve query performance for workloads composed of common, repeated query patterns. However,
 materializing intermediate results incurs additional costs. As such, before creating any materialized views, you should consider whether the
 costs are offset by the savings from reusing these results frequently.

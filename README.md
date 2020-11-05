@@ -1,6 +1,5 @@
-# Snowflake
+# Snowflake   (SnowPro certification notes)
 
-SnowPro certification notes 
 
 
 # about SF

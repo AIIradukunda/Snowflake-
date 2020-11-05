@@ -66,74 +66,87 @@ Stage 3 (final) for all Enterprise Edition and VPS accounts.
 This staged approach only applies to new releases. For patch releases, all accounts are moved to the patch release on the same day.
 Government Regions are only supported for Snowflake accounts on Business Critical Edition (or higher)
 In addition, Snowflake does not move data between accounts, so any data in an account in a region remains in the region unless users explicitly choose to copy, move, or replicate the data
-•	On Demand: Usage-based pricing with no long-term licensing requirements.
-•	Capacity: Discounted pricing based on an up-front Capacity commitment.
+--	On Demand: Usage-based pricing with no long-term licensing requirements.
+--	Capacity: Discounted pricing based on an up-front Capacity commitment.
 
 
 
 
-Caches - Snowflake Caches different data to improve query performance and assist in reducing cost >Metadata Cache - Cloud Services layer - Improves compile time for queries against commonly used tables 
->Result Cache - Cloud Services layer - Holds the query results - If Customers run the exact same query within 24 hours, result cache is used, and no warehouse is required to be active
- >Local Disk Cache or Warehouse Cache - Storage Layer - Caches the data used by the SQL query in its local SSD and memory - This improves query performance if the same data was used (less time to fetch remotely) - Cache is deleted when the Warehouse is suspended
 
-Which cache type gets purged regularly? ->warehouse cache
-User A and User B can access one another's result sets from the Results Cache, as long as which of the following are true? (Choose two) ->same role, run same text or query within 24hrs
-You are viewing the Query History table in the History area of the WebUI. You want to see if a query pulled data from long-term centralized storage. Where will you look and what will you look for?
+# Caches
+-- Snowflake Caches different data to improve query performance and assist in reducing cost >Metadata Cache - Cloud Services layer
+-- Improves compile time for queries against commonly used tables 
+-- Result Cache - Cloud Services layer - Holds the query results - If Customers run the exact same query within 24 hours, result cache is used, and no warehouse is required to be active
+-- Local Disk Cache or Warehouse Cache - Storage Layer - Caches the data used by the SQL query in its local SSD and memory - This improves query performance if the same data was used (less time to fetch remotely) - Cache is deleted when the Warehouse is suspended
+
+1. Which cache type gets purged regularly? ->warehouse cache
+
+2. User A and User B can access one another's result sets from the Results Cache, as long as which of the following are true? (Choose two) ->same role, run same text or query within 24hrs
+
+3. You are viewing the Query History table in the History area of the WebUI. You want to see if a query pulled data from long-term centralized storage. Where will you look and what will you look for?
  Look in the Bytes Scanned column for a green bar.
 
 N.B: each layer scales independently and includes built in redundancy
 Snowflake encryption is AES 256
 you only need to create databases, table, warehouses, load data and execute queries then snowflake handles the rest
-Which of the following terms are associated with the Cloud Services Layer? 
+
+4. Which of the following terms are associated with the Cloud Services Layer? 
 ->query planning, query optimization and query compiling
 
-Which of the following statements are true about Snowflake?
+5.Which of the following statements are true about Snowflake?
 -> Storage can increase or decrease without any effect on virtual warehouse sizes.
 -> Compute can be scaled up, down, out, or in and there is no effect on storage used.
 -> Two Virtual Warehouses can access the same data at the same time without causing contention issues.
-What attributes make Snowflake a true SaaS solution?
+
+6. What attributes make Snowflake a true SaaS solution?
 -> No hardware to purchase or configure.
 -> No maintenance upgrades or patches to install.
 -> Transparent releases don't require user intervention.
-Which of the following terms describes Snowflake's Architecture?
+
+7. Which of the following terms describes Snowflake's Architecture?
 -> Shared Data
-Which statements are true about storage relationships?
+
+8. Which statements are true about storage relationships?
 -> Snowflake Tables are stored within Schemas.
 -> Snowflake Schemas are stored within Databases
-Snowflake data storage costs are calculated based on:
+
+9. Snowflake data storage costs are calculated based on:
 -> Compressed Size
 -> Amount Stored - Daily Average
-Snowflake data storage costs include which types of data?
+
+10. Snowflake data storage costs include which types of data?
 -> Persistent data stored in permanent tables
 -> Data retained to enable data recovery (time travel and fail-safe)
 
-Snowflake compute costs depend on which of the following?
+11. Snowflake compute costs depend on which of the following?
 -> The amount of time warehouses have run.
 -> The sizes of running warehouses.
-What duties can a Snowflake professionals avoid that are common tasks for traditional on-premise database and IT staff? 
+
+12. What duties can a Snowflake professionals avoid that are common tasks for traditional on-premise database and IT staff? 
 ->Maintaining metadata
 ->Maintaining statistics
 ->Maintaining the physical security of a server room (key cards, door locks, etc)
  
-Which of the following are true of Multi-Cluster warehouses? Select all that apply.
+13. Which of the following are true of Multi-Cluster warehouses? Select all that apply.
 Adds clusters automatically based on query activity
 Scales down when query activity slows
 The following factors affect data load rates:
 Physical location of the Stage
 Gzip compression efficiency
-What is the recommended approached for making a variant column accessible in a BI tool?
+ 14. What is the recommended approached for making a variant column accessible in a BI tool?
 A view
-Which of the following are true about the variant data type in Snowflake? Select all that apply.
+
+15. Which of the following are true about the variant data type in Snowflake? Select all that apply.
 Optimized storage based on repeated elements
 Can be queried using JSON path notation
 
-True or false: Snowflake offers tools to extract data from source systems.
-FALSE
-Which of the following statements are true about Snowflake Data sharing? Select all that apply.
+16. True or false: Snowflake offers tools to extract data from source systems. FALSE
+
+17.  Which of the following statements are true about Snowflake Data sharing? Select all that apply.
 Consumers can query shared tables in the same query as their own tables
 Data Sharing is integrated with role-based access controls
 
-Select all of the answers that describe Snowflake micro-partitions. Micro-partitions:
+18. Select all of the answers that describe Snowflake micro-partitions. Micro-partitions:
 Are the physical data files that comprise Snowflake’s logical tables
 Enable horizontal and vertical query pruning
 
@@ -166,15 +179,21 @@ the new virtual warehouse. In addition, resizing a virtual warehouse
 can enable limited scaling for query concurrency and queuing;
 however, virtual warehouse resizing is primarily for improving query
 performance.
+
+
 Snowflake allows for custom column separators (a.k.a. column delimiters). In order to use a caret symbol as a custom column separator, what option must you first choose? 
 --> other
+
 Snowflake does NOT allow for custom field enclosures like tildes. What three options are offered for field enclosures? 
 --> single quote, double quote, none
+
 Why did we recommend making the description field 62 characters wide instead of 60? 
+
 --> Because Snowflake does not provide an "Other" option for field enclosures.
 You can't change the name of a Datawarehouse after it is created
 Warehouses are owned by roles not individual users
 To change the warehouse that will be used to run a SQL command within a specific worksheet (for example, changing the worksheet so that it uses SMALL_WH), what two options are available?  
+
 -->Run a SQL command like "USE WAREHOUSE SMALL_WH;"
 -->Update the Warehouse field in the Context Menu located above the worksheet.
 snowflake has three panes: navigation tree, sql entry pane, and results/preview pane

@@ -3,23 +3,23 @@
 SnowPro certification notes 
 
 
-# about SF----
+# about SF
 snowflake (SaaS) -- no hardware to select, no software to install. run in a public cloud infrastructure. 
 Snowflake cannot be run on private cloud infrastructures (on-premises or hosted)
 All components of snowflake’s service run in a public cloud infrastructure
 ongoing management,maintenance is handled by SF itself
-- analytic db developped for the cloud ; it is not built on an existing database/ big data or hadoop thing
-- faster, easier to use and flexible than traditional warehouse
-- handles availability, optimization, authentication, configuration, resource management and data protection.
-#  SF ARCHITECTURE-----
+-- analytic db developped for the cloud ; it is not built on an existing database/ big data or hadoop thing
+-- faster, easier to use and flexible than traditional warehouse
+-- handles availability, optimization, authentication, configuration, resource management and data protection.
+#  SF ARCHITECTURE
 -- shared disk architectures use multiple nodes to access data stored on a single storage system (Symmetric Multiprocessing SMP)
 -- shared nothing architectures store a portion of data in each node and in each cluster in the data warehouse (Massive parallel processing - MPP)
 snowflake combines shared disk and shared nothing architectures and innovates new design and takes full advantage of 
 snowflake multi cluster shared data architectures consist of 3 separate layers:
--compute (Query Processing) : where queries are executed. Each virtual warehouse is an MPP compute cluster composed of multiple compute nodes 
--storage (Database Storage): data is stored in the database in columnar format
-- All data stored as an internal, optimized, compressed columnar format (micro-partitions - represents logical structure of table) - Can’t access the data directly, only through Snowflake (SQL etc)
-- services (Query Processing) (that manages it all)
+-- compute (Query Processing) : where queries are executed. Each virtual warehouse is an MPP compute cluster composed of multiple compute nodes 
+-- storage (Database Storage): data is stored in the database in columnar format
+-- All data stored as an internal, optimized, compressed columnar format (micro-partitions - represents logical structure of table) - Can’t access the data directly, only through Snowflake (SQL etc)
+--  services (Query Processing) (that manages it all)
 # Warehouse
 A warehouse provide the required resources: CPU, MEMORY, TEMPORARY STORAGE
 TO perform  select  statements and DML operations, a warehouse must be running and in use session
@@ -33,7 +33,7 @@ You can monitor multi cluster warehouses through history or worksheet
 Multi cluster datawarehouse enables numbers of users to connect to the same size warehouse
 Multi warehouses are best utilized for scaling resources to improve concurrency for users/queries. They are not beneficial for improve performance of slow running queries or data loading.
 Sf charges you for the number of clusters in Multi cluster WH
--# SNOWFLAKE PRICING & REGIONS    -----
+# SNOWFLAKE PRICING & REGIONS    
 Snowflake pricing is based on usage , you pay for only storage and resources you use
 storage costs are based on amount of compressed data stored in database
 compute costs are based on warehouse size and how long the warehouse runs
@@ -141,7 +141,7 @@ Table definitions
 References to all of the micropartition files for that table
 Tracking of all versions of the table data within the data retention window
 
------catalog &objects---
+# catalog &objects
 you can only load the tables in SF -- not views or schemas
 you can't modify a table, view or schema
 you can create or drop a warehouse
@@ -399,7 +399,7 @@ Time Travel cannot be disabled for an account; however, it can be disabled for i
 When you clone a schema /database you are cloning every objects that belongs to them 
 
  
-----Data loading----
+# Data loading
 User stages cannot be altered or dropped.
 User stage type is designed to store files that are staged and managed by a single user but can be loaded into multiple tables
 Table stage type is designed to store files that are staged and managed by one or more users but only loaded into a single table. Table stages cannot be altered or dropped
